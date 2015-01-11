@@ -1,5 +1,6 @@
 package com.jhdev.hr1;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,8 @@ public class MainActivity extends ActionBarActivity {
     private TextView emailTextView;
     private TextView nameTextView;
     private Button loginOrLogoutButton;
+    private Button employerButton;
+    private Button employeeButton;
 
     private ParseUser currentUser;
 
@@ -34,6 +37,9 @@ public class MainActivity extends ActionBarActivity {
         emailTextView = (TextView) findViewById(R.id.profile_email);
         nameTextView = (TextView) findViewById(R.id.profile_name);
         loginOrLogoutButton = (Button) findViewById(R.id.login_or_logout_button);
+        employerButton = (Button) findViewById(R.id.button1);
+        employeeButton = (Button) findViewById(R.id.button2);
+
         titleTextView.setText(R.string.profile_title_logged_in);
 
         loginOrLogoutButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +55,22 @@ public class MainActivity extends ActionBarActivity {
                     ParseLoginBuilder loginBuilder = new ParseLoginBuilder(MainActivity.this);
                     startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
                 }
+            }
+        });
+
+        employerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), EmployerMainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        employeeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), EmployeeListFragment.class);
+                startActivity(i);
             }
         });
 
