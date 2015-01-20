@@ -15,11 +15,11 @@ public class JobListingCustomAdapter extends ParseQueryAdapter<ParseObject> {
 
     public JobListingCustomAdapter(Context context) {
         // Use the QueryFactory to construct a PQA that will only show
-        // Todos marked as high-pri
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("JobListing");
-//                query.whereEqualTo("highPri", true);
+                query.orderByDescending("updatedAt");
+//                query.whereEqualTo("isDraft", false);
                 return query;
             }
         });
@@ -53,6 +53,8 @@ public class JobListingCustomAdapter extends ParseQueryAdapter<ParseObject> {
 //        TextView timestampView = (TextView) v.findViewById(R.id.timestamp);
 //        timestampView.setText(object.getCreatedAt().toString());
         return v;
+
+
     }
 
 }
