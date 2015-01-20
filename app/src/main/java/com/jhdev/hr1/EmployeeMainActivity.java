@@ -2,15 +2,15 @@ package com.jhdev.hr1;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
-
+/*
+ * This loads the list of jobs for the prospective employee
+ */
 public class EmployeeMainActivity extends ActionBarActivity {
 
     ParseUser currentUser;
@@ -40,10 +40,14 @@ public class EmployeeMainActivity extends ActionBarActivity {
         mainAdapter = new ParseQueryAdapter<>(this, JobListing.class);
         mainAdapter.setTextKey("title");
 
+        customAdapter = new JobListingCustomAdapter(this);
+
         lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(mainAdapter);
         mainAdapter.loadObjects();
 
+        lv.setAdapter(customAdapter);
+        customAdapter.loadObjects();
 //        loadFromParse();
     }
 

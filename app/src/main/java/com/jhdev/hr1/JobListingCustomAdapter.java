@@ -25,32 +25,35 @@ public class JobListingCustomAdapter extends ParseQueryAdapter<ParseObject> {
         });
     }
 
-//    // Customize the layout by overriding getItemView
-//    @Override
-//    public View getItemView(ParseObject object, View v, ViewGroup parent) {
-//        if (v == null) {
-//            v = View.inflate(getContext(), R.layout.urgent_item, null);
+    // Customize the layout by overriding getItemView
+    @Override
+    public View getItemView(ParseObject object, View v, ViewGroup parent) {
+        if (v == null) {
+            v = View.inflate(getContext(), R.layout.job_list_item, null);
+        }
+
+        super.getItemView(object, v, parent);
+
+        // Add and download the image
+//        ParseImageView todoImage = (ParseImageView) v.findViewById(R.id.icon);
+//        ParseFile imageFile = object.getParseFile("image");
+//        if (imageFile != null) {
+//            todoImage.setParseFile(imageFile);
+//            todoImage.loadInBackground();
 //        }
-//
-//        super.getItemView(object, v, parent);
-//
-//        // Add and download the image
-////        ParseImageView todoImage = (ParseImageView) v.findViewById(R.id.icon);
-////        ParseFile imageFile = object.getParseFile("image");
-////        if (imageFile != null) {
-////            todoImage.setParseFile(imageFile);
-////            todoImage.loadInBackground();
-////        }
-//
-//        // Add the title view
-//        TextView titleTextView = (TextView) v.findViewById(R.id.text1);
-//        titleTextView.setText(object.getString("title"));
-//
+
+        // Add the title view
+        TextView titleTextView = (TextView) v.findViewById(R.id.firstLine);
+        titleTextView.setText(object.getString("title"));
+
+        TextView desTextView = (TextView) v.findViewById(R.id.secondLine);
+        desTextView.setText(object.getString("description"));
+
 //        // Add a reminder of how long this item has been outstanding
 //        TextView timestampView = (TextView) v.findViewById(R.id.timestamp);
 //        timestampView.setText(object.getCreatedAt().toString());
-//        return v;
-//    }
+        return v;
+    }
 
 }
 

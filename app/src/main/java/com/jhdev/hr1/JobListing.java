@@ -61,4 +61,12 @@ public class JobListing extends ParseObject {
         put("description", description);
     }
 
+    public String getWorkType() {
+        return getString("worktype");
+    }
+
+    public void setWorkType(String WorkType) {
+        put("worktype", WorkType);
+    }
+
 }
