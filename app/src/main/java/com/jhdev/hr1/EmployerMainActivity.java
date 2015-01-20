@@ -1,23 +1,36 @@
 package com.jhdev.hr1;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
-
 
 public class EmployerMainActivity extends ActionBarActivity {
 
     ParseUser currentUser;
     ListView lv;
     ParseQueryAdapter<JobListing> parseQueryAdapter;
+
+    private ParseQueryAdapter<JobListing> popularListAdapter;
+    private LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,23 +43,92 @@ public class EmployerMainActivity extends ActionBarActivity {
         ParseQueryAdapter.QueryFactory<JobListing> factory = new ParseQueryAdapter.QueryFactory<JobListing>() {
             public ParseQuery<JobListing> create() {
                 ParseQuery<JobListing> query = JobListing.getQuery();
-                query.orderByAscending("title");
-                query.whereEqualTo("isDraft", false);
+//                query.orderByAscending("title");
+//                query.whereEqualTo("isDraft", false);
                 query.fromLocalDatastore();
                 return query;
             }
         };
 
-        parseQueryAdapter = new ParseQueryAdapter<JobListing>(getBaseContext(), factory);
+//        parseQueryAdapter = new ParseQueryAdapter<JobListing>(getBaseContext(), factory);
+        popularListAdapter = new popularListAdapter(this, factory);
 
         lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(parseQueryAdapter);
+//        lv.setAdapter(parseQueryAdapter);
+        lv.setAdapter(popularListAdapter);
 
         loadFromParse();
+
+
     }
 
-    public void loadFromParse() {
-//        ParseQuery
+
+    private class popularListAdapter extends ParseQueryAdapter<JobListing> {
+
+        public popularListAdapter(Context context, QueryFactory<JobListing> queryFactory) {
+            super(context, queryFactory);
+        }
+
+        @Override
+        public View getItemView(JobListing tinyMap, View view, ViewGroup parent) {
+            ViewHolder holder;
+            if (view == null) {
+                inflater = getLayoutInflater();
+                view = inflater.inflate(R.layout.job_list_item, parent, false);
+                holder = new ViewHolder();
+                holder.title = (TextView) view
+                        .findViewById(R.id.firstLine);
+                holder.description = (TextView) view.findViewById(R.id.secondLine);
+                view.setTag(holder);
+            } else {
+                holder = (ViewHolder) view.getTag();
+            }
+            TextView tinymapTitle = holder.title;
+            tinymapTitle.setText(tinyMap.getTitle());
+            TextView description = holder.description;
+            description.setText(tinyMap.getDescription());
+            if (tinyMap.isDraft()) {
+                tinymapTitle.setTypeface(null, Typeface.ITALIC);
+            } else {
+                tinymapTitle.setTypeface(null, Typeface.NORMAL);
+            }
+            return view;
+        }
+    }
+
+    private static class ViewHolder {
+        TextView title;
+        TextView description;
+    }
+
+    private void loadFromParse() {
+        ParseQuery<JobListing> query = JobListing.getQuery();
+//        query.whereEqualTo("isDraft", false);
+//        query.include("author");
+//            query.include("hashmapItemList");
+        query.findInBackground(new FindCallback<JobListing>() {
+            public void done(List<JobListing> jobListings, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(jobListings,
+                            new SaveCallback() {
+                                public void done(ParseException e) {
+                                    if (e == null) {
+//                                            if (!isFinishing()) {
+                                        popularListAdapter.loadObjects();
+//                                            Log.i("popularListActivity", "after loadobjects" + popularListAdapter);
+//                                            }
+                                    } else {
+                                        Log.e("popularListActivity", "Error pinning hashmaps: " + e.getMessage());
+                                    }
+                                }
+                            });
+                } else {
+                    Log.i("popularListActivity",
+                            "loadFromParse: Error finding pinned hashmaps: "
+                                    + e.getMessage());
+                }
+            }
+        });
     }
 
     @Override

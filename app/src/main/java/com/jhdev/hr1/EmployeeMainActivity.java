@@ -57,9 +57,14 @@ public class EmployeeMainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
+
+                JobListing jobListing = (JobListing) customAdapter.getItem(position);
+
                 Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_SHORT)
+                        "Click ListItem Number " + jobListing.getTitle(), Toast.LENGTH_SHORT)
                         .show();
+
+
 
             }
         });
