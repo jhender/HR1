@@ -9,15 +9,15 @@
     android:orientation="vertical">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
         android:text="Employer"
         android:id="@+id/button1"
        />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
         android:text="Employee"
         android:id="@+id/button2"
         />

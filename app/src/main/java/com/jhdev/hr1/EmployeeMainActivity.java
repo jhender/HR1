@@ -1,5 +1,6 @@
 package com.jhdev.hr1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.ParseAnalytics;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
@@ -60,11 +62,17 @@ public class EmployeeMainActivity extends ActionBarActivity {
 
                 JobListing jobListing = (JobListing) customAdapter.getItem(position);
 
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + jobListing.getTitle(), Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(getApplicationContext(),
+//                        "Click ListItem Number " + jobListing.getTitle(), Toast.LENGTH_SHORT)
+//                        .show();
 
+                ParseAnalytics.trackEventInBackground("Open JobListItem");
+                jobListing.increment("open");
+                jobListing.saveEventually();
 
+                Intent intent = new Intent(view.getContext(), JobListItem.class);
+                intent.putExtra("selectedId", jobListing.getObjectId());
+                startActivity(intent);
 
             }
         });

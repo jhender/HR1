@@ -54,6 +54,10 @@
             android:name=".EmployeeMainActivity"
             android:label="@string/title_activity_employee_main" >
         </activity>
+        <activity
+            android:name=".JobListItem"
+            android:label="@string/title_activity_job_list_item" >
+        </activity>
     </application>
 
 </manifest>
