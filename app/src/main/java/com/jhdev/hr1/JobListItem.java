@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class JobListItem extends ActionBarActivity {
     TextView textView2;
     TextView textView3;
     TextView textView4;
+    TextView textView5;
+    TextView textView6;
 
     Button button1;
     Button button2;
@@ -33,6 +36,8 @@ public class JobListItem extends ActionBarActivity {
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
         textView4 = (TextView) findViewById(R.id.textView4);
+        textView5 = (TextView) findViewById(R.id.textView5);
+        textView6 = (TextView) findViewById(R.id.textView6);
 
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -70,6 +75,10 @@ public class JobListItem extends ActionBarActivity {
                     if (object.getDescription() != null) {
                         textView2.setText(object.getDescription());
                     }
+
+                    Long sec = object.getUpdatedAt().getTime();
+                    CharSequence time = DateUtils.getRelativeTimeSpanString(sec);
+                    textView6.setText("Listed By X " + time);
 
                 }
             }
