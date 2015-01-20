@@ -69,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
         employeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), EmployeeListFragment.class);
+                Intent i = new Intent(getBaseContext(), EmployeeMainActivity.class);
                 startActivity(i);
             }
         });
