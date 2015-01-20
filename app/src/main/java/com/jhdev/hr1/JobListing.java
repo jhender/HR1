@@ -8,7 +8,7 @@ import com.parse.ParseUser;
 import java.util.UUID;
 
 /**
- * Created by Jh on 11/1/15.
+ *  The JobListing Object
  */
 @ParseClassName("JobListing")
 public class JobListing extends ParseObject {
@@ -24,12 +24,12 @@ public class JobListing extends ParseObject {
         put("title", title);
     }
 
-    public ParseUser getOwner() {
-        return getParseUser("owner");
+    public ParseUser getLister() {
+        return getParseUser("lister");
     }
 
-    public void setOwner(ParseUser currentUser) {
-        put("owner", currentUser);
+    public void setLister(ParseUser currentUser) {
+        put("lister", currentUser);
     }
 
     public boolean isDraft() {

@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
-import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
