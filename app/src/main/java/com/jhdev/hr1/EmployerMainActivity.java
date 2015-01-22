@@ -44,6 +44,7 @@ public class EmployerMainActivity extends ActionBarActivity {
         ParseQueryAdapter.QueryFactory<JobListing> factory = new ParseQueryAdapter.QueryFactory<JobListing>() {
             public ParseQuery<JobListing> create() {
                 ParseQuery<JobListing> query = JobListing.getQuery();
+                query.orderByAscending("createdAt");
 //                query.orderByAscending("title");
 //                query.whereEqualTo("isDraft", false);
                 query.fromLocalDatastore();

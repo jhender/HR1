@@ -23,8 +23,8 @@ public class MainActivity extends ActionBarActivity {
     private TextView emailTextView;
     private TextView nameTextView;
     private Button loginOrLogoutButton;
-    private Button employerButton;
-    private Button employeeButton;
+    Button employerButton;
+    Button employeeButton;
 
     private ParseUser currentUser;
 
