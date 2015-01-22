@@ -7,8 +7,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,10 +28,10 @@ public class EmployerMainActivity extends ActionBarActivity {
 
     ParseUser currentUser;
     ListView lv;
-    ParseQueryAdapter<JobListing> parseQueryAdapter;
+//    ParseQueryAdapter<JobListing> parseQueryAdapter;
 
     private ParseQueryAdapter<JobListing> popularListAdapter;
-    private LayoutInflater inflater;
+    LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,7 @@ public class EmployerMainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                JobListing jobListing = (JobListing) popularListAdapter.getItem(position);
+                JobListing jobListing = popularListAdapter.getItem(position);
 
                 ParseAnalytics.trackEventInBackground("Open JobListItem");
                 jobListing.increment("open");

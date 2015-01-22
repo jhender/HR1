@@ -6,10 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 /*
@@ -19,7 +17,7 @@ public class EmployeeMainActivity extends ActionBarActivity {
 
     ParseUser currentUser;
     ListView lv;
-    ParseQueryAdapter<JobListing> mainAdapter;
+//    ParseQueryAdapter<JobListing> mainAdapter;
     JobListingCustomAdapter customAdapter;
 
     @Override
