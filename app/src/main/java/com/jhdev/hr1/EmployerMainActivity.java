@@ -1,6 +1,7 @@
 package com.jhdev.hr1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,10 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -59,6 +62,23 @@ public class EmployerMainActivity extends ActionBarActivity {
 
         loadFromParse();
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                JobListing jobListing = (JobListing) popularListAdapter.getItem(position);
+
+                ParseAnalytics.trackEventInBackground("Open JobListItem");
+                jobListing.increment("open");
+                jobListing.saveEventually();
+
+                Intent intent = new Intent(view.getContext(), JobListItem.class);
+                intent.putExtra("selectedId", jobListing.getObjectId());
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -104,8 +124,6 @@ public class EmployerMainActivity extends ActionBarActivity {
     private void loadFromParse() {
         ParseQuery<JobListing> query = JobListing.getQuery();
 //        query.whereEqualTo("isDraft", false);
-//        query.include("author");
-//            query.include("hashmapItemList");
         query.findInBackground(new FindCallback<JobListing>() {
             public void done(List<JobListing> jobListings, ParseException e) {
                 if (e == null) {
@@ -131,25 +149,25 @@ public class EmployerMainActivity extends ActionBarActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.employer_menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.employer_menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
