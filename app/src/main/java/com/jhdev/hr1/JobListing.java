@@ -69,4 +69,12 @@ public class JobListing extends ParseObject {
         put("worktype", WorkType);
     }
 
+    public String getStatus() {
+        return getString("status");
+    }
+
+    public Number getOpen() {
+        return getNumber("open");
+    }
+
 }

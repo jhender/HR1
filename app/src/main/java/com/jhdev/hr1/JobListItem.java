@@ -12,7 +12,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
-
 public class JobListItem extends ActionBarActivity {
 
     JobListing jobListing;
@@ -23,6 +22,7 @@ public class JobListItem extends ActionBarActivity {
     TextView textView4;
     TextView textView5;
     TextView textView6;
+    TextView textView7;
 
     Button button1;
     Button button2;
@@ -38,6 +38,7 @@ public class JobListItem extends ActionBarActivity {
         textView4 = (TextView) findViewById(R.id.textView4);
         textView5 = (TextView) findViewById(R.id.textView5);
         textView6 = (TextView) findViewById(R.id.textView6);
+        textView7 = (TextView) findViewById(R.id.textView7);
 
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -73,15 +74,26 @@ public class JobListItem extends ActionBarActivity {
                 if (!isFinishing()) {
                     jobListing = object;
 
+                    //show title
                     textView1.setText(object.getTitle());
 
+                    //show main description
                     if (object.getDescription() != null) {
                         textView2.setText(object.getDescription());
                     }
 
+                    //show Time since
                     Long sec = object.getUpdatedAt().getTime();
                     CharSequence time = DateUtils.getRelativeTimeSpanString(sec);
                     textView6.setText("Listed By X " + time);
+
+                    //show availability
+                    if (object.getStatus().equals("active")) {
+                        textView4.setText("Still Available");
+                    }
+
+                    //show open number of times
+                    textView7.setText("Viewed " + object.getOpen() + " times.");
 
                 }
             }
@@ -89,26 +101,3 @@ public class JobListItem extends ActionBarActivity {
     }
 }
 
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_job_list_item, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-//}

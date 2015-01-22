@@ -95,8 +95,7 @@ public class EmployerMainActivity extends ActionBarActivity {
                 inflater = getLayoutInflater();
                 view = inflater.inflate(R.layout.job_list_item, parent, false);
                 holder = new ViewHolder();
-                holder.title = (TextView) view
-                        .findViewById(R.id.firstLine);
+                holder.title = (TextView) view.findViewById(R.id.firstLine);
                 holder.description = (TextView) view.findViewById(R.id.secondLine);
                 view.setTag(holder);
             } else {
@@ -123,6 +122,7 @@ public class EmployerMainActivity extends ActionBarActivity {
     private void loadFromParse() {
         ParseQuery<JobListing> query = JobListing.getQuery();
 //        query.whereEqualTo("isDraft", false);
+        query.whereEqualTo("status", "active");
         query.findInBackground(new FindCallback<JobListing>() {
             public void done(List<JobListing> jobListings, ParseException e) {
                 if (e == null) {
