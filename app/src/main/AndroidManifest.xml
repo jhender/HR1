@@ -62,6 +62,10 @@
             android:name=".EmployeeProfileActivity"
             android:label="@string/title_activity_employee_profile" >
         </activity>
+        <activity
+            android:name=".ProfileEmployeeEdit"
+            android:label="@string/title_activity_profile_employee_edit" >
+        </activity>
     </application>
 
 </manifest>
