@@ -17,12 +17,12 @@ public class ProfileEmployee extends ParseObject {
         //empty constructor
     }
 
-    public ParseUser getLister() {
-        return getParseUser("lister");
+    public ParseUser getUser() {
+        return getParseUser("user");
     }
 
-    public void setLister(ParseUser currentUser) {
-        put("lister", currentUser);
+    public void setUser(ParseUser currentUser) {
+        put("user", currentUser);
     }
 
     public boolean isDraft() {

@@ -15,6 +15,7 @@ public class MainApplication extends Application {
         super.onCreate();
 
         ParseObject.registerSubclass(JobListing.class);
+        ParseObject.registerSubclass(ProfileEmployee.class);
 
         // enable the Local Datastore
         Parse.enableLocalDatastore(getApplicationContext());
