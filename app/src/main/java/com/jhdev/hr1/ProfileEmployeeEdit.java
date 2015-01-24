@@ -3,14 +3,22 @@ package com.jhdev.hr1;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 public class ProfileEmployeeEdit extends ActionBarActivity {
 
     Button buttonSave, buttonCancel;
-    private EditText editText1, editText2;
+    private EditText editTextName, editTextDOB, editTextResume;
+    private String name, DOB, resume;
+    private ProfileEmployee profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,12 @@ public class ProfileEmployeeEdit extends ActionBarActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                editTextName = (EditText) findViewById(R.id.editTextName);
+                editTextResume = (EditText) findViewById(R.id.editTextResume);
+                name = editTextName.getText().toString();
+                resume = editTextResume.getText().toString();
+
+                Log.d("Profile Edit", "onsave" + name + resume);
                 saveProfile();
             }
         });
@@ -44,6 +58,9 @@ public class ProfileEmployeeEdit extends ActionBarActivity {
 
     //save the edits into the user's profile
     public void saveProfile() {
+
+
+
         finish();
     }
 

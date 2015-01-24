@@ -9,8 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -20,11 +24,14 @@ public class EmployeeProfileActivity extends ActionBarActivity {
     ParseUser currentUser;
     Button editButton;
     private ProfileEmployee profileEmployee;
+    TextView tv1,tv2,tv3,tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_profile);
+
+        tv1 = (TextView) findViewById(R.id.textViewResume);
 
 
         currentUser = ParseUser.getCurrentUser();
@@ -37,6 +44,7 @@ public class EmployeeProfileActivity extends ActionBarActivity {
             ProfileEmployee profile = new ProfileEmployee();
             profile.setUser(currentUser);
             profile.saveEventually();
+            profileEmployee = profile;
 
             currentUser.put("hasProfile", true);
             currentUser.saveEventually();
@@ -58,6 +66,7 @@ public class EmployeeProfileActivity extends ActionBarActivity {
         if (currentUser != null) {
             getProfile();
         } else {
+            getProfile();
             Toast.makeText(this, "not logged in", Toast.LENGTH_LONG).show();
         }
 
@@ -65,6 +74,20 @@ public class EmployeeProfileActivity extends ActionBarActivity {
 
     public void getProfile() {
         //todo get Profile. save locally too.
+
+        ParseQuery<ProfileEmployee> query = ParseQuery.getQuery("ProfileEmployee");
+        query.whereEqualTo("user", currentUser);
+        query.getFirstInBackground(new GetCallback<ProfileEmployee>() {
+            @Override
+            public void done(ProfileEmployee profileEmployee, ParseException e) {
+                if (e == null) {
+                        Log.d("Profile get", "found" + profileEmployee.getResume());
+                        tv1.setText(profileEmployee.getResume());
+                    } else {
+                        Log.e("Profile get", e.toString());
+                }
+            }
+        });
 
 
 

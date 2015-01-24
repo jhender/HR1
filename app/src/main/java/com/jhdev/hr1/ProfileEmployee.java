@@ -33,15 +33,6 @@ public class ProfileEmployee extends ParseObject {
         put("isDraft", isDraft);
     }
 
-    public void setUuidString() {
-        UUID uuid = UUID.randomUUID();
-        put("uuid", uuid.toString());
-    }
-
-    public String getUuidString() {
-        return getString("uuid");
-    }
-
     public static ParseQuery<ProfileEmployee> getQuery() {
         return ParseQuery.getQuery(ProfileEmployee.class);
     }
@@ -54,11 +45,11 @@ public class ProfileEmployee extends ParseObject {
         put("birthday", birthday);
     }
 
-    public String getExperience() {
-        return getString("experience");
+    public String getResume() {
+        return getString("resume");
     }
 
-    public void setExperience(String experience) {
-        put("experience", experience);
+    public void setResume(String resume) {
+        put("resume", resume);
     }
 }
