@@ -110,10 +110,6 @@ public class EmployeeMainActivity extends ActionBarActivity {
             return true;
         }
 
-        if (id == R.id.action_history) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }
