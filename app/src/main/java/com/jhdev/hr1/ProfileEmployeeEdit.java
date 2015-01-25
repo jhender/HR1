@@ -22,8 +22,8 @@ public class ProfileEmployeeEdit extends ActionBarActivity
     implements DatePickerDialog.OnDateSetListener{
 
     Button buttonSave, buttonCancel;
-    private EditText editTextName, editTextDOB, editTextResume;
-    private String name, resume;
+    private EditText editTextName, editTextDOB, editTextResume, editTextNationality;
+    private String name, resume, nationality;
     private ParseUser currentUser;
     private ProfileEmployee profileEmployee;
     private Date DOB;
@@ -40,6 +40,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextResume = (EditText) findViewById(R.id.editTextResume);
         editTextDOB = (EditText) findViewById(R.id.editTextDate);
+        editTextNationality = (EditText) findViewById(R.id.editTextNationality);
 
         //set content from Profile. in future get bundle or load local, save on load time.
         getProfile();
@@ -80,6 +81,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
 
                 name = editTextName.getText().toString();
                 resume = editTextResume.getText().toString();
+                nationality = editTextNationality.getText().toString();
 
 
                 Log.d("Profile Edit", "onsave" + name + resume);
@@ -119,6 +121,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
         profileEmployee.setResume(resume);
         profileEmployee.setFullName(name);
         profileEmployee.setBirthday(DOB);
+        profileEmployee.setNationality(nationality);
         //todo save the date
         profileEmployee.saveEventually();
 

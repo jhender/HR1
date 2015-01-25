@@ -74,7 +74,7 @@ public class EmployeeProfileActivity extends ActionBarActivity {
     }
 
     public void getProfile() {
-        //todo get Profile. save locally too.
+        //todo save locally too. pinInBackground
 
         ParseQuery<ProfileEmployee> query = ParseQuery.getQuery("ProfileEmployee");
         query.whereEqualTo("user", currentUser);

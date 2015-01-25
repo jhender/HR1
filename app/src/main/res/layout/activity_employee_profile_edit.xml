@@ -8,6 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -57,7 +58,7 @@
                 android:id="@+id/textView4" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="DOB"
                 android:id="@+id/textView5"
@@ -72,6 +73,19 @@
                 android:hint="date"
                 android:focusable="false"
 
+                />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Nationality"
+                android:id="@+id/textView6"
+                android:layout_marginBottom="22dp"
+                android:layout_gravity="left" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextNationality"
                 />
 
 
@@ -90,7 +104,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Resume"
-                android:id="@+id/textView8"/>
+                android:id="@+id/textView8"
+                android:textColor="@color/primary_dark" />
 
             <EditText
                 android:layout_width="match_parent"
