@@ -119,6 +119,7 @@ public class EmployerMainActivity extends ActionBarActivity {
         TextView description;
     }
 
+
     private void loadFromParse() {
         ParseQuery<JobListing> query = JobListing.getQuery();
 //        query.whereEqualTo("isDraft", false);

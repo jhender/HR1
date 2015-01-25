@@ -15,14 +15,19 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class ProfileEmployeeEdit extends ActionBarActivity
     implements DatePickerDialog.OnDateSetListener{
 
     Button buttonSave, buttonCancel;
     private EditText editTextName, editTextDOB, editTextResume;
-    private String name, DOB, resume;
+    private String name, resume;
     private ParseUser currentUser;
     private ProfileEmployee profileEmployee;
+    private Date DOB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,10 @@ public class ProfileEmployeeEdit extends ActionBarActivity
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 editTextDOB.setText("new" + year + monthOfYear + dayOfMonth);
+//                                DOB = new Date(year, monthOfYear, dayOfMonth);
+                                Calendar calendar = new GregorianCalendar();
+                                calendar.set(year, monthOfYear, dayOfMonth);
+                                DOB = new Date(calendar.getTimeInMillis());
                             }
                         }
                         //todo set saved date please
@@ -72,6 +81,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
 
                 name = editTextName.getText().toString();
                 resume = editTextResume.getText().toString();
+
 
                 Log.d("Profile Edit", "onsave" + name + resume);
                 saveProfile();
@@ -107,6 +117,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
 
         profileEmployee.setResume(resume);
         profileEmployee.setFullName(name);
+        profileEmployee.setBirthday(DOB);
         //todo save the date
         profileEmployee.saveEventually();
 
