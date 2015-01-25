@@ -66,7 +66,15 @@
             android:name=".ProfileEmployeeEdit"
             android:label="@string/title_activity_profile_employee_edit"
             android:launchMode="singleTop"
-            android:parentActivityName=".EmployeeProfileActivity">
+            android:parentActivityName=".EmployeeProfileActivity" >
+        </activity>
+        <activity
+            android:name=".JobListingCreateActivity"
+            android:label="@string/title_activity_job_listing_create"
+            android:parentActivityName=".EmployerMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jhdev.hr1.EmployerMainActivity" />
         </activity>
     </application>
 

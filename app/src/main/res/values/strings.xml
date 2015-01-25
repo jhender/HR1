@@ -21,5 +21,6 @@
     <string name="title_activity_job_list_item">JobListItem</string>
     <string name="title_activity_employee_profile">My Profile</string>
     <string name="title_activity_profile_employee_edit">Edit Profile</string>
+    <string name="title_activity_job_listing_create">List Job</string>
 
 </resources>
