@@ -25,16 +25,6 @@ public class ProfileEmployee extends ParseObject {
         put("user", currentUser);
     }
 
-
-
-    public boolean isDraft() {
-        return getBoolean("isDraft");
-    }
-
-    public void setDraft(boolean isDraft) {
-        put("isDraft", isDraft);
-    }
-
     public static ParseQuery<ProfileEmployee> getQuery() {
         return ParseQuery.getQuery(ProfileEmployee.class);
     }
@@ -62,5 +52,13 @@ public class ProfileEmployee extends ParseObject {
 
     public void setFullName(String fullName) {
         put("fullName", fullName);
+    }
+
+    public String getNationality() {
+        return getString("nationality");
+    }
+
+    public void setNationality(String nationality) {
+        put("nationality", nationality);
     }
 }

@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -24,7 +20,7 @@ public class EmployeeProfileActivity extends ActionBarActivity {
     ParseUser currentUser;
     Button editButton;
     private ProfileEmployee profileEmployee;
-    TextView tv1,tv2,tv3,tv4;
+    TextView tv1,tv2,tv3, tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +28,10 @@ public class EmployeeProfileActivity extends ActionBarActivity {
         setContentView(R.layout.activity_employee_profile);
 
         tv1 = (TextView) findViewById(R.id.textViewResume);
+        tv2 = (TextView) findViewById(R.id.textViewFullName);
+        tv3 = (TextView) findViewById(R.id.textViewDOB);
+        tv4 = (TextView) findViewById(R.id.textViewNationality);
+
 
         currentUser = ParseUser.getCurrentUser();
         //todo Check if User is logged in. If not logged in, redirect to login/signup page.
@@ -85,6 +85,9 @@ public class EmployeeProfileActivity extends ActionBarActivity {
                     profileEmployee = object;
                     Log.d("Profile get", "found" + profileEmployee.getResume());
                     tv1.setText(profileEmployee.getResume());
+                    tv2.setText(profileEmployee.getFullName());
+                    tv3.setText(profileEmployee.getBirthday().toString());
+                    tv4.setText(profileEmployee.getNationality());
                 } else {
                     Log.e("Profile get", e.toString());
                 }

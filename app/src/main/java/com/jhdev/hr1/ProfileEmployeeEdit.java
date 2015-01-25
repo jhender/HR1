@@ -1,7 +1,6 @@
 package com.jhdev.hr1;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,6 +105,8 @@ public class ProfileEmployeeEdit extends ActionBarActivity
                     Log.d("Profile get", "found" + profileEmployee.getResume());
                     editTextResume.setText(profileEmployee.getResume());
                     editTextName.setText(profileEmployee.getFullName());
+                    //todo not sure if the date is formatted properly
+                    editTextDOB.setText(profileEmployee.getBirthday().toString());
                 } else {
                     Log.e("Profile get", e.toString());
                 }

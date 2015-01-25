@@ -3,11 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.jhdev.hr1.EmployeeMainActivity">
 
-    <item android:id="@+id/action_profile" android:title="My Profile"
+    <item android:id="@+id/action_profile" android:title="@string/title_activity_employee_profile"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_applications" android:title="Applications"
-        android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_history" android:title="History"
         android:orderInCategory="100" app:showAsAction="never" />
 
 </menu>

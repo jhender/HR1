@@ -32,13 +32,13 @@ public class JobListItem extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_list_item);
 
-        textView1 = (TextView) findViewById(R.id.textView1);
+        textView1 = (TextView) findViewById(R.id.textViewFullName);
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
         textView4 = (TextView) findViewById(R.id.textView4);
         textView5 = (TextView) findViewById(R.id.textView5);
         textView6 = (TextView) findViewById(R.id.textView6);
-        textView7 = (TextView) findViewById(R.id.textView7);
+        textView7 = (TextView) findViewById(R.id.textViewNationality);
 
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
