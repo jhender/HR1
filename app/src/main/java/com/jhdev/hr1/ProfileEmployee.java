@@ -25,6 +25,8 @@ public class ProfileEmployee extends ParseObject {
         put("user", currentUser);
     }
 
+
+
     public boolean isDraft() {
         return getBoolean("isDraft");
     }
@@ -51,5 +53,14 @@ public class ProfileEmployee extends ParseObject {
 
     public void setResume(String resume) {
         put("resume", resume);
+    }
+
+
+    public String getFullName() {
+        return getString("fullName");
+    }
+
+    public void setFullName(String fullName) {
+        put("fullName", fullName);
     }
 }

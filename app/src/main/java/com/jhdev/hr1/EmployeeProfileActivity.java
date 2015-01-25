@@ -33,7 +33,6 @@ public class EmployeeProfileActivity extends ActionBarActivity {
 
         tv1 = (TextView) findViewById(R.id.textViewResume);
 
-
         currentUser = ParseUser.getCurrentUser();
         //todo Check if User is logged in. If not logged in, redirect to login/signup page.
 
@@ -58,6 +57,8 @@ public class EmployeeProfileActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getBaseContext(), ProfileEmployeeEdit.class);
+                //todo bundle
+
                 startActivity(intent);
 
             }
@@ -79,12 +80,13 @@ public class EmployeeProfileActivity extends ActionBarActivity {
         query.whereEqualTo("user", currentUser);
         query.getFirstInBackground(new GetCallback<ProfileEmployee>() {
             @Override
-            public void done(ProfileEmployee profileEmployee, ParseException e) {
+            public void done(ProfileEmployee object, ParseException e) {
                 if (e == null) {
-                        Log.d("Profile get", "found" + profileEmployee.getResume());
-                        tv1.setText(profileEmployee.getResume());
-                    } else {
-                        Log.e("Profile get", e.toString());
+                    profileEmployee = object;
+                    Log.d("Profile get", "found" + profileEmployee.getResume());
+                    tv1.setText(profileEmployee.getResume());
+                } else {
+                    Log.e("Profile get", e.toString());
                 }
             }
         });
