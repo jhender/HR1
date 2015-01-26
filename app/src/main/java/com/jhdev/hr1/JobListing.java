@@ -73,6 +73,10 @@ public class JobListing extends ParseObject {
         return getString("status");
     }
 
+    public void setStatus(String status) {
+        put("status", status);
+    }
+
     public Number getOpen() {
         return getNumber("open");
     }

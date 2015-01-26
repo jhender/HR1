@@ -47,6 +47,7 @@ public class EmployerMainActivity extends ActionBarActivity {
             public ParseQuery<JobListing> create() {
                 ParseQuery<JobListing> query = JobListing.getQuery();
                 query.orderByAscending("createdAt");
+                query.whereEqualTo("lister", currentUser);
 //                query.orderByAscending("title");
 //                query.whereEqualTo("isDraft", false);
                 query.fromLocalDatastore();
@@ -126,6 +127,7 @@ public class EmployerMainActivity extends ActionBarActivity {
         ParseQuery<JobListing> query = JobListing.getQuery();
 //        query.whereEqualTo("isDraft", false);
         query.whereEqualTo("status", "active");
+        query.whereEqualTo("lister", currentUser);
         query.findInBackground(new FindCallback<JobListing>() {
             public void done(List<JobListing> jobListings, ParseException e) {
                 if (e == null) {
@@ -167,7 +169,8 @@ public class EmployerMainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_list_new) {
-            return true;
+            Intent i = new Intent(getBaseContext(), JobListingCreateActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
