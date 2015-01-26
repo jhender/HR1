@@ -27,6 +27,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
     private ParseUser currentUser;
     private ProfileEmployee profileEmployee;
     private Date DOB;
+    boolean DOBchanged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class ProfileEmployeeEdit extends ActionBarActivity
                                 Calendar calendar = new GregorianCalendar();
                                 calendar.set(year, monthOfYear, dayOfMonth);
                                 DOB = new Date(calendar.getTimeInMillis());
+                                DOBchanged = true;
                             }
                         }
                         //todo set saved date please
@@ -82,7 +84,6 @@ public class ProfileEmployeeEdit extends ActionBarActivity
                 name = editTextName.getText().toString();
                 resume = editTextResume.getText().toString();
                 nationality = editTextNationality.getText().toString();
-
 
                 Log.d("Profile Edit", "onsave" + name + resume);
                 saveProfile();
@@ -120,7 +121,9 @@ public class ProfileEmployeeEdit extends ActionBarActivity
 
         profileEmployee.setResume(resume);
         profileEmployee.setFullName(name);
-        profileEmployee.setBirthday(DOB);
+        if (DOBchanged) {
+            profileEmployee.setBirthday(DOB);
+        }
         profileEmployee.setNationality(nationality);
         //todo save the date
         profileEmployee.saveEventually();
