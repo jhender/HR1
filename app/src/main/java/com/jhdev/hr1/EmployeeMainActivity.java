@@ -19,7 +19,6 @@ public class EmployeeMainActivity extends ActionBarActivity {
 
     ParseUser currentUser;
     ListView lv;
-//    ParseQueryAdapter<JobListing> mainAdapter;
     JobListingCustomAdapter customAdapter;
 
     @Override

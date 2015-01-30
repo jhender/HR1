@@ -100,6 +100,7 @@ public class EmployerMainActivity extends ActionBarActivity {
                 holder = new ViewHolder();
                 holder.title = (TextView) view.findViewById(R.id.firstLine);
                 holder.description = (TextView) view.findViewById(R.id.secondLine);
+                holder.draft = (TextView) view.findViewById(R.id.tvdraft);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
@@ -108,10 +109,12 @@ public class EmployerMainActivity extends ActionBarActivity {
             tinymapTitle.setText(tinyMap.getTitle());
             TextView description = holder.description;
             description.setText(tinyMap.getDescription());
-            if (tinyMap.isDraft()) {
-                tinymapTitle.setTypeface(null, Typeface.ITALIC);
+            if (tinyMap.getStatus().equals("draft")) {
+//                tinymapTitle.setTypeface(null, Typeface.ITALIC);
+                TextView draft = holder.draft;
+                draft.setText("draft");
             } else {
-                tinymapTitle.setTypeface(null, Typeface.NORMAL);
+//                tinymapTitle.setTypeface(null, Typeface.NORMAL);
             }
             return view;
         }
@@ -120,13 +123,13 @@ public class EmployerMainActivity extends ActionBarActivity {
     private static class ViewHolder {
         TextView title;
         TextView description;
+        TextView draft;
     }
-
 
     private void loadFromParse() {
         ParseQuery<JobListing> query = JobListing.getQuery();
 //        query.whereEqualTo("isDraft", false);
-        query.whereEqualTo("status", "active");
+//        query.whereEqualTo("status", "active, draft");
         query.whereEqualTo("lister", currentUser);
         query.findInBackground(new FindCallback<JobListing>() {
             public void done(List<JobListing> jobListings, ParseException e) {

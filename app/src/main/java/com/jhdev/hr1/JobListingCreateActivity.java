@@ -15,7 +15,6 @@ public class JobListingCreateActivity extends ActionBarActivity {
     private ParseUser currentUser;
     JobListing jobListing;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +52,12 @@ public class JobListingCreateActivity extends ActionBarActivity {
         jobListing.setTitle(editTextTitle.getText().toString());
         jobListing.setDescription(editTextDescription.getText().toString());
         jobListing.setLister(currentUser);
-        jobListing.setStatus("active");
+        jobListing.setStatus("draft");
         jobListing.saveEventually();
 
         finish();
+
+        //todo confirm draft? make payment? PUBLISH. how the hell to make payment
     }
 
 
