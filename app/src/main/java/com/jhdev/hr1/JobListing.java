@@ -16,12 +16,31 @@ public class JobListing extends ParseObject {
         //empty constructor
     }
 
+
+    //the displayed items:
+
+    public String getCategory() {
+        return getString("category");
+    }
+
+    public void setCategory(String category) {
+        put("category", category);
+    }
+
     public String getTitle() {
         return getString("title");
     }
 
     public void setTitle(String title) {
         put("title", title);
+    }
+
+    public String getDescription() {
+        return getString("description");
+    }
+
+    public void setDescription(String description) {
+        put("description", description);
     }
 
     public ParseUser getLister() {
@@ -31,6 +50,8 @@ public class JobListing extends ParseObject {
     public void setLister(ParseUser currentUser) {
         put("lister", currentUser);
     }
+
+    // the backend items:
 
     public boolean isDraft() {
         return getBoolean("isDraft");
@@ -53,22 +74,6 @@ public class JobListing extends ParseObject {
         return ParseQuery.getQuery(JobListing.class);
     }
 
-    public String getDescription() {
-        return getString("description");
-    }
-
-    public void setDescription(String description) {
-        put("description", description);
-    }
-
-    public String getWorkType() {
-        return getString("worktype");
-    }
-
-    public void setWorkType(String WorkType) {
-        put("worktype", WorkType);
-    }
-
     public String getStatus() {
         return getString("status");
     }
@@ -80,5 +85,6 @@ public class JobListing extends ParseObject {
     public Number getOpen() {
         return getNumber("open");
     }
+
 
 }

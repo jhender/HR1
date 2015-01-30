@@ -2,7 +2,6 @@ package com.jhdev.hr1;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,10 +45,8 @@ public class EmployerMainActivity extends ActionBarActivity {
         ParseQueryAdapter.QueryFactory<JobListing> factory = new ParseQueryAdapter.QueryFactory<JobListing>() {
             public ParseQuery<JobListing> create() {
                 ParseQuery<JobListing> query = JobListing.getQuery();
-                query.orderByAscending("createdAt");
+                query.orderByDescending("createdAt");
                 query.whereEqualTo("lister", currentUser);
-//                query.orderByAscending("title");
-//                query.whereEqualTo("isDraft", false);
                 query.fromLocalDatastore();
                 return query;
             }
@@ -113,9 +110,10 @@ public class EmployerMainActivity extends ActionBarActivity {
 //                tinymapTitle.setTypeface(null, Typeface.ITALIC);
                 TextView draft = holder.draft;
                 draft.setText("draft");
-            } else {
-//                tinymapTitle.setTypeface(null, Typeface.NORMAL);
             }
+//            else {
+//                tinymapTitle.setTypeface(null, Typeface.NORMAL);
+//            }
             return view;
         }
     }
