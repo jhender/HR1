@@ -16,7 +16,6 @@ public class JobListing extends ParseObject {
         //empty constructor
     }
 
-
     //the displayed items:
 
     public String getCategory() {
@@ -41,6 +40,14 @@ public class JobListing extends ParseObject {
 
     public void setDescription(String description) {
         put("description", description);
+    }
+
+    public String getLocation() {
+        return getString("location");
+    }
+
+    public void setLocation(String location) {
+        put("location", location);
     }
 
     public ParseUser getLister() {
