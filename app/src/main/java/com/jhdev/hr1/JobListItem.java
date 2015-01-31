@@ -68,7 +68,9 @@ public class JobListItem extends ActionBarActivity {
                 if (!isFinishing()) {
                     jobListing = object;
 
-                    textView8.setText(object.getCategory());
+                    if (object.getCategory() != null) {
+                        textView8.setText(object.getCategory());
+                    }
 
                     //show title
                     textView1.setText(object.getTitle());
@@ -78,18 +80,21 @@ public class JobListItem extends ActionBarActivity {
                         textView2.setText(object.getDescription());
                     }
 
-                    //show Time since
-                    Long sec = object.getUpdatedAt().getTime();
-                    CharSequence time = DateUtils.getRelativeTimeSpanString(sec);
-                    textView6.setText("Listed By X " + time);
-
                     //show availability
                     if (object.getStatus().equals("active")) {
                         textView4.setText("Still Available");
                     }
 
+                    textView5.setText("Location: " + object.getLocation());
+
+                    //show Time since
+                    Long sec = object.getUpdatedAt().getTime();
+                    CharSequence time = DateUtils.getRelativeTimeSpanString(sec);
+                    textView6.setText("Listed By X " + time);
+
                     //show open number of times
                     textView7.setText("Viewed " + object.getOpen() + " times.");
+
 
                 }
             }
